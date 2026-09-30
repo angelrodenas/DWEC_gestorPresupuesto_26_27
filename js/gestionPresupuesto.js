@@ -4,21 +4,21 @@
 // TODO: Variable global
 let _presupuesto = 0
 
-function actualizarPresupuesto(value) {
-    
-    if(value < 0){
+function actualizarPresupuesto(presupuesto) {
+    if(presupuesto <= 0 && typeof presupuesto !== 'number'){
         console.log("Ha ocurrido un error")
-        _presupuesto = -1
+       return -1
     }
     else{
-        _presupuesto = value
+        _presupuesto = presupuesto
+        return _presupuesto
     }
-    console.log(value)
-    return _presupuesto
+    console.log(presupuesto)
+
 }
 
 function mostrarPresupuesto() {
-    return `Tu presupuesto actual es de ${_presupuesto} €.`
+    return `Tu presupuesto actual es de ${_presupuesto} €`
 }
 
 function CrearGasto(num) {
