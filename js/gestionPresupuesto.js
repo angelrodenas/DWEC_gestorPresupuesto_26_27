@@ -18,13 +18,11 @@ function actualizarPresupuesto(value) {
 }
 
 function mostrarPresupuesto() {
-     console.log(`Tu presupuesto actual es de ${_presupuesto} €`)
+    return `Tu presupuesto actual es de ${_presupuesto} €.`
 }
 
 function CrearGasto(num) {
-    let gasto = {
-        
-    }
+
 }
 
 // NO MODIFICAR A PARTIR DE AQUÍ: exportación de funciones y objetos creados para poder ejecutar los tests.
