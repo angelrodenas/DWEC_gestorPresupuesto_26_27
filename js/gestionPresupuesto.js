@@ -1,18 +1,30 @@
+`user strict`
 // TODO: Crear las funciones, objetos y variables indicadas en el enunciado
 
 // TODO: Variable global
+let _presupuesto = 0
 
-
-function actualizarPresupuesto() {
-    // TODO
+function actualizarPresupuesto(value) {
+    
+    if(value < 0){
+        console.log("Ha ocurrido un error")
+        value = -1
+    }
+    else{
+        _presupuesto = value
+    }
+    console.log(value)
+    return _presupuesto
 }
 
 function mostrarPresupuesto() {
-    // TODO
+     console.log(`Tu presupuesto actual es de ${_presupuesto} €`)
 }
 
-function CrearGasto() {
-    // TODO
+function CrearGasto(num) {
+    let gasto = {
+        
+    }
 }
 
 // NO MODIFICAR A PARTIR DE AQUÍ: exportación de funciones y objetos creados para poder ejecutar los tests.
