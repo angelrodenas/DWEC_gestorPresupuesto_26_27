@@ -8,7 +8,7 @@ function actualizarPresupuesto(value) {
     
     if(value < 0){
         console.log("Ha ocurrido un error")
-        value = -1
+        _presupuesto = -1
     }
     else{
         _presupuesto = value
