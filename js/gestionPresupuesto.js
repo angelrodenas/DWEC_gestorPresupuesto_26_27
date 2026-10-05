@@ -22,13 +22,16 @@ function mostrarPresupuesto() {
     return `Tu presupuesto actual es de ${presupuesto} €`
 }
 
-function CrearGasto(descripcion,fecha, etiquetas, valor) {
+function CrearGasto(descripcion,valor,fecha,...etiquetas) {
     this.descripcion = descripcion
-    if(Array.isArray(etiquetas)){
-        etiquetas = []   
-        this.etiquetas = etiquetas
-    }
     this.fecha = fecha
+    if(!isNaN(Date.parse(fecha)) && typeof fecha === 'string'){
+        this.fecha = Date.parse(fecha)
+    }else{
+        this.fecha =  Date.now()
+    }
+        
+    
     if(typeof valor !== 'number' || valor < 0){
         this.valor = 0
     }
@@ -47,6 +50,34 @@ function CrearGasto(descripcion,fecha, etiquetas, valor) {
             this.valor = num
         }
     }
+    this.etiquetas = []
+    this.anyadirEtiquetas = function(...nuevasEtiquetas){
+        for(let etiqueta of nuevasEtiquetas){
+            if(!this.etiquetas.includes(etiqueta)){
+                this.etiquetas.push(etiqueta)
+            }
+        }
+    }
+    if(etiquetas.length > 0){
+        this.anyadirEtiquetas(...etiquetas)
+    }
+    this.actualizarFecha = function(nuevaFecha){
+        if(typeof nuevaFecha === 'string'){
+            let timestamp = Date.parse(nuevaFecha) 
+            if(!isNaN(timestamp)){
+                this.fecha = timestamp
+            }
+        }
+    }
+    this.mostrarGastoCompleto = function(){
+        let texto =  `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €.\n` 
+        texto += `Fecha: ${new Date(this.fecha).toLocaleString()}\n`
+        texto += "Etiquetas \n"
+        for(let etiqueta of this.etiquetas){
+            texto += '- ${etiqueta} \n'
+        }
+        return texto
+    }
 }
 
 function listarGastos(){
@@ -59,6 +90,11 @@ function borrarGasto(){
 
 }
 function calcularTotalGastos(){
+    let suma = 0
+    for(let i = 0; i < gastos.length;i++){
+        suma += gastos[i]
+    }
+    return
 
 }
 function calcularBalance(){
