@@ -22,8 +22,13 @@ function mostrarPresupuesto() {
     return `Tu presupuesto actual es de ${presupuesto} €`
 }
 
-function CrearGasto() {
+function CrearGasto(descripcion,fecha, etiquetas, valor) {
     this.descripcion = descripcion
+    if(Array.isArray(etiquetas)){
+        etiquetas = []   
+        this.etiquetas = etiquetas
+    }
+    this.fecha = fecha
     if(typeof valor !== 'number' || valor < 0){
         this.valor = 0
     }
@@ -45,9 +50,9 @@ function CrearGasto() {
 }
 
 function listarGastos(){
-    return idGasto
+    return gastos
 }
-function anyadirGasto(gasto){
+function anyadirGasto(id){
     
 }
 function borrarGasto(){
@@ -67,7 +72,8 @@ export   {
     actualizarPresupuesto,
     CrearGasto,
     listarGastos,
-    anyadirGasto, borrarGasto, 
+    anyadirGasto, 
+    borrarGasto, 
     calcularTotalGastos, 
     calcularBalance
 }
