@@ -147,7 +147,17 @@ function calcularBalance(){
     let result = presupuesto - total
     return result
 }
-function filtrarGastos(){
+function filtrarGastos(fechaDesde, fechaHasta, valorMinimo, valorMaximo, descripcionContiene,etiquetasTiene){
+    if(typeof fechaDesde === "string" && !isNaN(Date.parse(fechaDesde))){
+        fechaDesde = Date.parse(fechaDesde)
+    }
+    if(typeof fechaHasta === "string" && !isNaN(Date.parse(fechaHasta))){
+        fechaHasta = Date.parse(fechaHasta)
+    }
+
+    let filtrado = gastos.filter(function(gasto){
+        
+    })
 
 }
 function agruparGastos(){
