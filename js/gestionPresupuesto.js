@@ -22,70 +22,101 @@ function mostrarPresupuesto() {
     return `Tu presupuesto actual es de ${presupuesto} €`
 }
 
-function CrearGasto(descripcion,valor,fecha,...etiquetas) {
-    this.descripcion = descripcion
-    this.fecha = fecha
+function CrearGasto(descripcion, valor, fecha, ...etiquetas) {
+    this.descripcion = descripcion;
+    this.fecha = fecha;
+    
     if(!isNaN(Date.parse(fecha)) && typeof fecha === 'string'){
-        this.fecha = Date.parse(fecha)
-    }else{
-        this.fecha =  Date.now()
+        this.fecha = Date.parse(fecha);
+    } else {
+        this.fecha = Date.now();
     }
         
-    
     if(typeof valor !== 'number' || valor < 0){
-        this.valor = 0
+        this.valor = 0;
+    } else {
+        this.valor = valor;
     }
-    else
-    {
-        this.valor = valor
-    }
+
     this.mostrarGasto = function(){
-        return `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €`
-    }
+        return `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €`;
+    };
+
     this.actualizarDescripcion = function(texto){
-        this.descripcion = texto
-    }
+        this.descripcion = texto;
+    };
+
     this.actualizarValor = function(num){
         if(typeof num === 'number' && num > 0){
-            this.valor = num
+            this.valor = num;
         }
-    }
-    this.etiquetas = []
+    };
+
+    this.etiquetas = [];
+
     this.anyadirEtiquetas = function(...nuevasEtiquetas){
         for(let etiqueta of nuevasEtiquetas){
             if(!this.etiquetas.includes(etiqueta)){
-                this.etiquetas.push(etiqueta)
+                this.etiquetas.push(etiqueta);
             }
         }
-    }
+    };
+
     if(etiquetas.length > 0){
-        this.anyadirEtiquetas(...etiquetas)
+        this.anyadirEtiquetas(...etiquetas);
     }
+
     this.actualizarFecha = function(nuevaFecha){
         if(typeof nuevaFecha === 'string'){
-            let timestamp = Date.parse(nuevaFecha) 
+            let timestamp = Date.parse(nuevaFecha); 
             if(!isNaN(timestamp)){
-                this.fecha = timestamp
+                this.fecha = timestamp;
             }
         }
-    }
-    this.mostrarGastoCompleto = function(){
-        let texto =  `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €.\n` 
-        texto += `Fecha: ${new Date(this.fecha).toLocaleString()}\n`
-        texto += "Etiquetas:\n"
-        for(let etiqueta of this.etiquetas){
-            texto +=`- ${etiqueta}\n`
-        }
-        return texto
-    }
-    this.borrarEtiquetas = function(...etiqueta){
-        for(let i = this.etiquetas.length - 1; i>= 0; i--){
-            if(etiqueta.includes(this.etiquetas[i])){
-                this.etiquetas.splice(i,1)
-            }
-    }
-}
+    };
 
+    this.mostrarGastoCompleto = function(){
+        let texto = `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €.\n`; 
+        texto += `Fecha: ${new Date(this.fecha).toLocaleString()}\n`;
+        texto += "Etiquetas:\n";
+        for(let etiqueta of this.etiquetas){
+            texto += `- ${etiqueta}\n`;
+        }
+        return texto;
+    };
+
+    this.borrarEtiquetas = function(...etiqueta){
+        for(let i = this.etiquetas.length - 1; i >= 0; i--){
+            if(etiqueta.includes(this.etiquetas[i])){
+                this.etiquetas.splice(i, 1);
+            }
+        }
+    }
+
+    this.obtenerPeriodoAgrupacion = function(periodo){
+         let texto = ""
+        if(typeof periodo === "string"){
+         texto = periodo.toLowerCase();    
+        }
+
+        let fecha = new Date(this.fecha);
+
+        let dia = String(fecha.getDate()).padStart(2, '0');
+        let mes = String(fecha.getMonth() + 1).padStart(2, '0');
+        let anyo = String(fecha.getFullYear());
+
+        if(texto === "dia"){
+            return `${anyo}-${mes}-${dia}`;
+        }
+        else if(texto === "mes"){
+            return `${anyo}-${mes}`;
+        }
+        else if(texto === "anyo" || texto === "año"){
+            return `${anyo}`;
+        }
+        
+        return `${anyo}-${mes}`;
+    };
 }
 
 function listarGastos(){
@@ -116,6 +147,12 @@ function calcularBalance(){
     let result = presupuesto - total
     return result
 }
+function filtrarGastos(){
+
+}
+function agruparGastos(){
+
+}
 // NO MODIFICAR A PARTIR DE AQUÍ: exportación de funciones y objetos creados para poder ejecutar los tests.
 // Las funciones y objetos deben tener los nombres que se indican en el enunciado
 // Si al obtener el código de una práctica se genera un conflicto, por favor incluye todo el código que aparece aquí debajo
@@ -129,5 +166,7 @@ export   {
     anyadirGasto, 
     borrarGasto, 
     calcularTotalGastos, 
-    calcularBalance
+    calcularBalance,
+    filtrarGastos,
+    agruparGastos 
 }
