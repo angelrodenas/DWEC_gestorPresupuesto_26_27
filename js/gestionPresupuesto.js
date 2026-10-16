@@ -147,36 +147,38 @@ function calcularBalance(){
     let result = presupuesto - total
     return result
 }
-function filtrarGastos(filtro = {}){
+function filtrarGastos({fechaDesde,fechaHasta,valorMinimo, valorMaximo,descripcionContiene, etiquetasTiene}){
     let result = gastos.filter(function(gasto){
-        if(filtro.fechaDesde && !isNaN(Date.parse(filtro.fechaDesde))){
-            if(Date.parse(gasto.fecha) < Date.parse(filtro.fechaDesde)){
-                return false
-            }
-        }
-        if(filtro.fechaHasta && !isNaN(Date.parse(fechaHasta))){
-            if(Date.parse(gastos.fecha) > Date.parse(filtro.fechaHasta)){
-                return false
-            }
-        }
-        if(typeof filtro.valorMinimo === 'number'){
-            if(gasto.valor < filtro.valorMinimo){
-                return false
-            }
-        }
-        if(typeof filtro.valorMaximo === 'number'){
-            if(gasto.valor > filtro.valorMaximo){
-                return false
-            }
-        }
-        if(typeof filtro.descripcionContiene === 'string'){
-            let textMin = filtro.descripcionContiene.toLowerCase()
-        }else{
+        if(fechaDesde != undefined && gasto.fecha < Date.parse(fechaDesde)){
             return false
         }
-        if()
+        if(fechaHasta != undefined && gasto.fecha > Date.parse(fechaHasta)){
+                return false
+        }
+        if(valorMinimo != undefined && gasto.valor < valorMinimo){
+                return false
+        }
+        if(valorMaximo != undefined && gasto.valor > valorMaximo){
+            return false
+        }
+        if(descripcionContiene != undefined && !gasto.descripcion.toLowerCase().includes(descripcionContiene.toLowerCase())){     
+                return false
+        }
+        if(etiquetasTiene && etiquetasTiene.length >= 0){
+            let coincide = false
+            const gastosEtiquetas = gasto.etiquetas.map(etiqueta => etiqueta.toLowerCase())
+            for(let etiqueta of etiquetasTiene){
+                if(gastosEtiquetas.includes(etiqueta.toLowerCase())){
+                    coincide = true
+                }
+            }
+            if(!coincide){
+                return false 
+            }
+        }
+        return true
     })
-
+    return result
 }
 function agruparGastos(){
 
