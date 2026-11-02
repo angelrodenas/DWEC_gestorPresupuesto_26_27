@@ -1,5 +1,5 @@
 function mostrarDatoEnId(idElemento, valor){
-    return valor
+    document.getElementById(idElemento).textContent = valor
 }
 export{
     mostrarDatoEnId,
