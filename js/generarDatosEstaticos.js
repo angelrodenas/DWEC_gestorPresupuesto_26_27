@@ -20,3 +20,6 @@ gp.anyadirGasto(gasto6)
 
 gpw.mostrarDatoEnId('gastos-totales',gp.calcularTotalGastos())
 gpw.mostrarDatoEnId('balance-total',gp.calcularBalance())
+for(let etiqueta of gp.listarGastos()){
+gpw.mostrarGastoWeb('listado-gastos-completo', etiqueta)
+}
