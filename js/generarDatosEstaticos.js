@@ -38,4 +38,13 @@ for(let gasto of gp.filtrarGastos({valorMinimo:200.00,etiquetas:"seguros"})){
 
 for(let gasto of gp.filtrarGastos({etiquetas:["comida","transporte"],valorMaximo:50.00})){
 gpw.mostrarGastoWeb('listado-gastos-filtrado-4',gasto)    
+}   
+for(let gasto of gp.agruparGastos('dia')){
+    gpw.mostrarGastosAgrupadosWeb('agrupacion-dia',gasto,'dia')
+}
+for(let gasto of gp.agruparGastos('mes')){
+    gpw.mostrarGastosAgrupadosWeb('agrupacion-dia',gasto,'mes')
+}
+for(let gasto of gp.agruparGastos('anyo')){
+    gpw.mostrarGastosAgrupadosWeb('agrupacion-dia',gasto,'anyo')
 }
