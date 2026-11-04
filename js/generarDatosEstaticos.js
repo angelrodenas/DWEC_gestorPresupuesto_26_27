@@ -23,3 +23,11 @@ gpw.mostrarDatoEnId('balance-total',gp.calcularBalance())
 for(let etiqueta of gp.listarGastos()){
 gpw.mostrarGastoWeb('listado-gastos-completo', etiqueta)
 }
+
+for(let gasto of gp.filtrarGastos({fechaDesde:"2021-09-01", fechaHasta: "2021-09-30"})){
+    gpw.mostrarGastoWeb('listado-gastos-filtrado-1',gasto)
+}
+
+for(let gasto of gp.filtrarGastos({valorMinimo:50.00})){
+    gpw.mostrarGastoWeb('listado-gastos-filtrado-2',gasto)
+}

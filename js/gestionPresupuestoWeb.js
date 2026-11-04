@@ -36,6 +36,7 @@ function mostrarGastoWeb(idElemento, gasto) {
         id.append(gastoPadre);
     }
 }
+
 export{
     mostrarDatoEnId,
     mostrarGastoWeb
