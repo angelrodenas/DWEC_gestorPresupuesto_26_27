@@ -64,7 +64,7 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo){
 
         let agrupHijo3 = document.createElement("span")
         agrupHijo3.className = "agrupacion-dato-valor"
-        agrupHijo3.textContent = valor
+        agrupHijo3.textContent = valor.toFixed(2)
         agrupHijo1.append(agrupHijo3)
 
         agrupPadre.append(agrupHijo1);

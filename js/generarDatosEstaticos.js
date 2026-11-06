@@ -18,8 +18,8 @@ gp.anyadirGasto(gasto4)
 gp.anyadirGasto(gasto5)
 gp.anyadirGasto(gasto6)
 
-gpw.mostrarDatoEnId('gastos-totales',gp.calcularTotalGastos())
-gpw.mostrarDatoEnId('balance-total',gp.calcularBalance())
+gpw.mostrarDatoEnId('gastos-totales',gp.calcularTotalGastos().toFixed(2))
+gpw.mostrarDatoEnId('balance-total',gp.calcularBalance().toFixed(2))
 for(let etiqueta of gp.listarGastos()){
 gpw.mostrarGastoWeb('listado-gastos-completo', etiqueta)
 }
@@ -40,7 +40,7 @@ for(let gasto of gp.filtrarGastos({etiquetas:["comida","transporte"],valorMaximo
 gpw.mostrarGastoWeb('listado-gastos-filtrado-4',gasto)    
 }   
 
-    gpw.mostrarGastosAgrupadosWeb('agrupacion-dia', gp.agruparGastos('dia'),'dia')
-    gpw.mostrarGastosAgrupadosWeb('agrupacion-mes', gp.agruparGastos('mes'),'mes')
-    gpw.mostrarGastosAgrupadosWeb('agrupacion-anyo', gp.agruparGastos('anyo'),'anyo')
+gpw.mostrarGastosAgrupadosWeb('agrupacion-dia', gp.agruparGastos('dia'),'dia')
+gpw.mostrarGastosAgrupadosWeb('agrupacion-mes', gp.agruparGastos('mes'),'mes')
+gpw.mostrarGastosAgrupadosWeb('agrupacion-anyo', gp.agruparGastos('anyo'),'anyo')
 
