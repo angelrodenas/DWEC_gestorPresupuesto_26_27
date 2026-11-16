@@ -1,3 +1,5 @@
+import * as gp from './gestionPresupuesto';
+
 function mostrarDatoEnId(idElemento, valor){
     document.getElementById(idElemento).textContent = valor
 }
@@ -74,6 +76,9 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo){
         id.append(agrupPadre);
     }
 } 
+function repintar(id){
+
+}
 export{
     mostrarDatoEnId,
     mostrarGastoWeb,
