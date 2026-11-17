@@ -80,6 +80,7 @@ function repintar(){
     mostrarDatoEnId('presupuesto', gp.mostrarPresupuesto())
     mostrarDatoEnId('gastos-totales',gp.calcularTotalGastos())
     mostrarDatoEnId('balance-total',gp.calcularBalance())
+    document.getElementById('listado-gastos-completo').innerHTML = ""
     for(let gasto of gp.listarGastos()){
     mostrarGastoWeb('listado-gastos-completo',gasto)
     }
@@ -91,10 +92,23 @@ function actualizarPresupuestoWeb(){
     repintar()
 }
 document.getElementById("actualizarpresupuesto").addEventListener("click",actualizarPresupuestoWeb)
+function nuevoGastoWeb(){
+    let descripcion = prompt('Introduce una descipcion','Esta es la descripcion')
+    let valor = prompt('Introduce el valor',50)
+    valor = Number(valor)
+    let fecha = prompt('Introduce la fecha','2026-11-17')
+    let etiquetaDefault = ['Comida,Agua,Casa,Trasnporte']
+    let etiqueta = prompt('Introduce las etiquetas',etiquetaDefault)
+    gp.CrearGasto(descripcion,valor,fecha,...etiqueta)
+    gp.anyadirGasto(valor)
+    repintar()
+}
+document.getElementById("anyadirgasto").addEventListener("click",nuevoGastoWeb)
 export{
     mostrarDatoEnId,
     mostrarGastoWeb,
     mostrarGastosAgrupadosWeb, 
     repintar,
-    actualizarPresupuestoWeb
+    actualizarPresupuestoWeb,
+    nuevoGastoWeb
 }
