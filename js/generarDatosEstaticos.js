@@ -2,8 +2,6 @@ import * as gp from './gestionPresupuesto.js'
 import * as gpw from './gestionPresupuestoWeb.js'
 gp.actualizarPresupuesto(1500)
 
-gpw.mostrarDatoEnId('presupuesto',  gp.mostrarPresupuesto());
-
 let gasto1 = new gp.CrearGasto("Compra carne", 23.44, "2021-10-06", "casa", "comida")
 let gasto2 = new gp.CrearGasto("Compra fruta y verdura", 14.25, "2021-09-06", "supermercado", "comida")
 let gasto3 = new gp.CrearGasto("Bonobús", 18.60, "2020-05-26", "transporte")
@@ -18,11 +16,7 @@ gp.anyadirGasto(gasto4)
 gp.anyadirGasto(gasto5)
 gp.anyadirGasto(gasto6)
 
-gpw.mostrarDatoEnId('gastos-totales',gp.calcularTotalGastos().toFixed(2))
-gpw.mostrarDatoEnId('balance-total',gp.calcularBalance().toFixed(2))
-for(let etiqueta of gp.listarGastos()){
-gpw.mostrarGastoWeb('listado-gastos-completo', etiqueta)
-}
+gpw.repintar()
 
 for(let gasto of gp.filtrarGastos({fechaDesde:"2021-09-01", fechaHasta: "2021-09-30"})){
     gpw.mostrarGastoWeb('listado-gastos-filtrado-1',gasto)
@@ -43,4 +37,3 @@ gpw.mostrarGastoWeb('listado-gastos-filtrado-4',gasto)
 gpw.mostrarGastosAgrupadosWeb('agrupacion-dia', gp.agruparGastos('dia'),'dia')
 gpw.mostrarGastosAgrupadosWeb('agrupacion-mes', gp.agruparGastos('mes'),'mes')
 gpw.mostrarGastosAgrupadosWeb('agrupacion-anyo', gp.agruparGastos('anyo'),'anyo')
-
