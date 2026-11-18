@@ -94,13 +94,13 @@ function actualizarPresupuestoWeb(){
 document.getElementById("actualizarpresupuesto").addEventListener("click",actualizarPresupuestoWeb)
 function nuevoGastoWeb(){
     let descripcion = prompt('Introduce una descipcion','Esta es la descripcion')
-    let valor = prompt('Introduce el valor',50)
+    let valor = prompt('Introduce el valor','50')
     valor = Number(valor)
     let fecha = prompt('Introduce la fecha','2026-11-17')
-    let etiquetaDefault = ['Comida,Agua,Casa,Trasnporte']
-    let etiqueta = prompt('Introduce las etiquetas',etiquetaDefault)
-    gp.CrearGasto(descripcion,valor,fecha,...etiqueta)
-    gp.anyadirGasto(valor)
+    let etiqueta = prompt('Introduce una etiqueta','etiqueta1,etiqueta2,etiqueta3')
+    let arrayEtiqueta = etiqueta.split(', ') 
+    let gasto = new gp.CrearGasto(descripcion,valor,fecha,...arrayEtiqueta)
+    gp.anyadirGasto(gasto)
     repintar()
 }
 document.getElementById("anyadirgasto").addEventListener("click",nuevoGastoWeb)
