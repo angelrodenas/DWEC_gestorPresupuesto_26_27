@@ -32,7 +32,25 @@ function mostrarGastoWeb(idElemento, gasto) {
         etiqueta1.textContent = etiqueta;
         gastoHijo4.append(etiqueta1);
     }
+    
+    let botonEditar = document.createElement("button")
+    botonEditar.className = "gasto-editar"
+    botonEditar.textContent = "Editar"
+    gastoPadre.append(botonEditar)
 
+    
+    let botonBorrar = document.createElement("button")
+    botonBorrar.className = "gasto-borrar"
+    botonBorrar.textContent = "Borrar"
+    gastoPadre.append(botonBorrar)
+
+
+    let miEdicion = new EditarHandle()
+    miEdicion.g = gasto
+
+    
+    botonEditar.addEventListener("click", miEdicion);
+    
     let id = document.getElementById(idElemento);
     if (id) {
         id.append(gastoPadre);
@@ -104,11 +122,28 @@ function nuevoGastoWeb(){
     repintar()
 }
 document.getElementById("anyadirgasto").addEventListener("click",nuevoGastoWeb)
+function EditarHandle(){
+    this.handleEvent = function(event){    
+    let descripcion = prompt('Introduce una descipcion','Esta es la descripcion')
+    let valor = prompt('Introduce el valor','50')
+    valor = Number(valor)
+    let fecha = prompt('Introduce la fecha','2026-11-17')
+    let etiqueta = prompt('Introduce una etiqueta','etiqueta1,etiqueta2,etiqueta3')
+    let arrayEtiqueta = etiqueta.split(', ') 
+    let gasto = new gp.CrearGasto(descripcion,valor,fecha,...arrayEtiqueta)
+    this.g.actualizarValor(valor)
+    this.g.actualizarDescripcion(descripcion)
+    this.g.actualizarFecha(fecha)
+    this.g.anyadirEtiquetas(...arrayEtiqueta)
+    repintar()
+    }
+}
 export{
     mostrarDatoEnId,
     mostrarGastoWeb,
     mostrarGastosAgrupadosWeb, 
     repintar,
     actualizarPresupuestoWeb,
-    nuevoGastoWeb
+    nuevoGastoWeb,
+    EditarHandle
 }
