@@ -30,7 +30,7 @@ for(let gasto of gp.filtrarGastos({valorMinimo:200.00,etiquetas:"seguros"})){
     gpw.mostrarGastoWeb('listado-gastos-filtrado-3',gasto)    
 }
 
-for(let gasto of gp.filtrarGastos({etiquetas:["comida","transporte"],valorMaximo:50.00})){
+for(let gasto of gp.filtrarGastos({etiquetasTiene:"comida",etiquetasTiene:"transporte",valorMaximo:50.00})){
 gpw.mostrarGastoWeb('listado-gastos-filtrado-4',gasto)    
 }   
 
